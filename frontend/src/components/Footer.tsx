@@ -11,7 +11,7 @@ function Footer() {
           </a>
         )}
         {' · '}
-        <a className="link" href="https://github.com/Omoboi-dev/stamp" target="_blank" rel="noreferrer">
+        <a className="link" href="https://github.com/Pro-builder/stamp" target="_blank" rel="noreferrer">
           Source
         </a>
         {' · '}
