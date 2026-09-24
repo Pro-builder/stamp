@@ -1,14 +1,239 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #131416 !important;
-  --foreground: #f9fafb;
+  --paper: #e9eff6;
+  --envelope: #fbfcfe;
+  --ink: #16224a;
+  --ink-soft: #3a4670;
+  --postmark: #6f7590;
+  --rule: #cfd8e6;
+  --red: #c62d3a;
+  --red-ink: #ffffff;
+  --blue: #2447a8;
+  --ok: #1f7a4d;
+  --shadow: 0 1px 0 #d5deea, 0 8px 24px -16px rgba(22, 34, 74, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f1630;
+    --envelope: #172046;
+    --ink: #e8ecf7;
+    --ink-soft: #b7c0dc;
+    --postmark: #8e96b8;
+    --rule: #2a356a;
+    --red: #ff5f6b;
+    --red-ink: #1a0c10;
+    --blue: #8aa4ff;
+    --ok: #5fd39a;
+    --shadow: 0 1px 0 #0b1026, 0 8px 24px -16px rgba(0, 0, 0, 0.6);
+  }
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.wide {
+  font-stretch: 125%;
+  font-variation-settings: 'wdth' 125;
+}
+
+.typed {
+  font-family: 'Courier Prime', ui-monospace, monospace;
+}
+
+.muted {
+  color: var(--postmark);
+}
+
+.link {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Buttons and fields */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: var(--red);
+  color: var(--red-ink);
+  transition: filter 120ms ease;
+}
+.btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-quiet {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--rule);
+}
+
+.field {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--envelope);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--rule);
+}
+.field:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--blue);
+}
+.field::placeholder {
+  color: var(--postmark);
+}
+
+/* A sheet of letter paper */
+.sheet {
+  position: relative;
+  background: var(--envelope);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+/* Airmail edge, used only on the letter being written */
+.airmail {
+  border: 7px solid transparent;
+  border-image: repeating-linear-gradient(
+      135deg,
+      var(--red) 0 14px,
+      var(--envelope) 14px 22px,
+      var(--blue) 22px 36px,
+      var(--envelope) 36px 44px
+    )
+    7;
+}
+
+/* Perforated postage stamp: the holes are the page showing through */
+.stamp {
+  width: 156px;
+  height: 180px;
+  padding: 9px;
+  flex-shrink: 0;
+  background: radial-gradient(circle, transparent 3.6px, var(--envelope) 4.2px) -6px -6px / 12px 12px;
+  filter: drop-shadow(0 6px 10px rgba(22, 34, 74, 0.18));
+  transform: rotate(-2deg);
+}
+.stamp-face {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--red);
+  color: var(--red-ink);
+  box-shadow: inset 0 0 0 3px var(--envelope), inset 0 0 0 5px var(--red);
+}
+.stamp.is-closed .stamp-face {
+  background: var(--postmark);
+  box-shadow: inset 0 0 0 3px var(--envelope), inset 0 0 0 5px var(--postmark);
+}
+
+/* Round postmark stamped over a settled letter */
+.sheet.is-settled {
+  padding-right: 128px;
+}
+.postmark {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 100px;
+  height: 100px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  box-shadow: inset 0 0 0 4px var(--envelope), inset 0 0 0 5px currentColor;
+  transform: rotate(-14deg);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.postmark small {
+  display: block;
+  margin-top: 2px;
+  font-weight: 500;
+  font-size: 11px;
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .sheet.is-settled {
+    padding-right: 20px;
+    padding-bottom: 96px;
+  }
+  .postmark {
+    top: auto;
+    bottom: 12px;
+    width: 84px;
+    height: 84px;
+    font-size: 12px;
+  }
+}
+.postmark.is-replied {
+  color: var(--ok);
+}
+.postmark.is-returned {
+  color: var(--postmark);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .postmark.just-landed {
+    animation: thump 380ms cubic-bezier(0.2, 0.9, 0.3, 1.4);
+  }
+}
+@keyframes thump {
+  from {
+    transform: rotate(-14deg) scale(1.6);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(-14deg) scale(1);
+    opacity: 0.85;
+  }
+}
+
+/* Tabs */
+.tab {
+  padding: 6px 2px;
+  font-weight: 600;
+  color: var(--postmark);
+  border-bottom: 2px solid transparent;
+}
+.tab[aria-selected='true'] {
+  color: var(--ink);
+  border-bottom-color: var(--red);
 }

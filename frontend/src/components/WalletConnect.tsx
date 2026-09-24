@@ -96,7 +96,7 @@ export function WalletConnect() {
       <button
         onClick={handleConnect}
         disabled={connecting}
-        className='bg-[#434242] w-[135px] h-[40px] rounded-[40px] border-[1px] border-[#1F1E1F] text-[12px] text-[#F4F3EF] font-mono leading-[100%]'
+        className='btn'
       >
         {connecting ? 'Connecting...' : 'Connect Wallet'}
       </button>
@@ -104,16 +104,11 @@ export function WalletConnect() {
   }
 
   // 3. Connected UI
-  const short = `${address.slice(0, 6)}…${address.slice(-4)}`;
+  const short = `${address.slice(0, 5)}…${address.slice(-4)}`;
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      <div className='bg-[#434242] w-[135px] h-[40px] rounded-[40px] border-[1px] border-[#1F1E1F] text-[12px] text-[#F4F3EF] font-mono leading-[100%] flex items-center justify-center'>
-        {short}
-      </div>
-      <button 
-        onClick={handleDisconnect}
-        style={{ padding: '6px 12px', color: '#9ca3af', cursor: 'pointer', background: 'transparent', border: 'none' }}
-      >
+    <div className="flex items-center gap-3">
+      <span className="text-sm font-semibold" title={address}>{short}</span>
+      <button onClick={handleDisconnect} className="muted text-sm underline underline-offset-2">
         Disconnect
       </button>
     </div>

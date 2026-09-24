@@ -1,0 +1,11 @@
+{
+  "network": "testnet",
+  "deployed_at": "2026-09-23T22:51:29.849129919+00:00",
+  "contracts": {
+    "inbox": {
+      "contract_id": "STP4136HTFB6KT53SE393QP4RZDN1715T4988JFF.inbox",
+      "tx_id": "0xd8435f7937d459843b6b5a022d332514cf2ea33b0a49fc0ffe9381fe3b4ce709",
+      "block_height": 0
+    }
+  }
+}
