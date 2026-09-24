@@ -4,13 +4,13 @@ description = ""
 authors = []
 telemetry = false
 cache_dir = "./.cache"
-requirements = []
+
 
 [repl.analysis]
 passes = ["check_checker"]
 check_checker = { trusted_sender = false, trusted_caller = false, callee_filter = false }
 
-[contracts.counter]
-path = "contracts/counter.clar"
+[contracts.inbox]
+path = "contracts/inbox.clar"
 clarity_version = 6
 epoch = "4.0"

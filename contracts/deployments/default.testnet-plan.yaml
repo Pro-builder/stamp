@@ -1,0 +1,17 @@
+id: 0
+name: Testnet deployment
+network: testnet
+stacks-node: https://api.testnet.hiro.so
+bitcoin-node: http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332
+plan:
+  batches:
+  - id: 0
+    transactions:
+    - transaction-type: contract-publish
+      contract-name: inbox
+      expected-sender: STP4136HTFB6KT53SE393QP4RZDN1715T4988JFF
+      cost: 2124164
+      path: contracts/inbox.clar
+      anchor-block-only: true
+      clarity-version: 6
+    epoch: '4.0'
