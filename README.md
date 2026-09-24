@@ -5,7 +5,7 @@ A paid inbox on Stacks. Put STX on a message to get someone's attention. They ea
 Built with [Scaffold Stacks](https://scaffoldstacks.mintlify.app/) for the Scaffold Stacks test flight bounty. The honest notes on the tool are in [docs/feedback-log.md](docs/feedback-log.md).
 
 - Contract (testnet): [`STP4136HTFB6KT53SE393QP4RZDN1715T4988JFF.inbox`](https://explorer.hiro.so/txid/0xd8435f7937d459843b6b5a022d332514cf2ea33b0a49fc0ffe9381fe3b4ce709?chain=testnet)
-- Live app: _add the Vercel link here_
+- Live app: https://stamp-eight-rust.vercel.app/
 
 ## How it works
 
