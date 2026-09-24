@@ -1,0 +1,12 @@
+{
+  "name": "stamp-e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e": "node run.mjs"
+  },
+  "dependencies": {
+    "@stacks/transactions": "7.6.0",
+    "playwright-core": "^1.63.0"
+  }
+}
